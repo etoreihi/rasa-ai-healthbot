@@ -7,6 +7,7 @@ A bilingual (English/Spanish) AI chatbot for healthcare professionals, designed 
 ## Project Documents
 [Elnaz and Sebastian's Weekly Schedule](https://docs.google.com/document/d/1Fc4Nd6bXYUpguRtHNKKSMtOwxlnK3pX1b9m8A17RnX4/edit?usp=sharing)  
 [Appendix Documentation](https://docs.google.com/document/d/1iTb1mTRsvmgF1rklFITARZv8HsuuzJ4QHgWdADOTos8/edit?tab=t.je7pfpg3diru)  
+[Scenario Template](https://docs.google.com/document/d/1XXESTDAFcaD2rKV5EP7lajFpS95f8vXbl75qD9VKTjU/edit?tab=t.0)  
 
 ## Resources
 [Sona vs Juji AI vs Rasa](https://docs.google.com/document/d/1z6ZTTPBC9BjJKWJnLYIlzK2ACvNrWIVcr6KdJPJLUZA/edit?tab=t.0)    
