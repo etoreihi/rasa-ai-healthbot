@@ -16,3 +16,9 @@ logs/
 
 # pyenv
 .python-version
+.venv/
+__pycache__/
+*.pyc
+.rasa/
+.env
+models/   
