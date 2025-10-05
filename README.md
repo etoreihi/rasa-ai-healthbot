@@ -21,6 +21,7 @@ A bilingual (English/Spanish) AI chatbot for healthcare professionals, designed 
 - Python 3.10.x is required to install Rasa.
 - ⚠️ Rasa is not yet compatible with Python 3.11 or newer. If your system uses a newer version (3.11+), follow these steps to install and use Python 3.10:
 
+
 ## Setting Up Python 3.10 (VSCode)
    
 1. Install pyenv
@@ -67,3 +68,17 @@ A bilingual (English/Spanish) AI chatbot for healthcare professionals, designed 
    ```bash
    rasa --version
 
+## Quick Start — VSCode (Windows)
+
+1) Open the project in VSCode → Terminal → **Select Default Profile** → **Command Prompt** → **New Terminal**  
+2) Run:
+
+```bat
+py -3.10 -m venv .venv
+.\.venv\Scripts\activate.bat
+python -m pip install --upgrade pip
+pip install rasa==3.6.20 rasa-sdk==3.6.2
+
+rasa train
+rasa shell          :: interactive chat
+:: only NLU:  rasa shell nlu
