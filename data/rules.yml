@@ -1,13 +1,57 @@
 version: "3.1"
 
 rules:
-
 - rule: Say goodbye anytime the user says goodbye
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+    - intent: goodbye
+    - action: utter_goodbye
 
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- rule: greet
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: thanks
+  steps:
+    - intent: smalltalk_thanks
+    - action: utter_thanks
+
+- rule: help
+  steps:
+    - intent: smalltalk_help
+    - action: utter_help
+
+- rule: smalltalk how are you
+  steps:
+    - intent: smalltalk_how_are_you
+    - action: utter_smalltalk_how_are_you
+
+- rule: smalltalk who are you
+  steps:
+    - intent: smalltalk_who_are_you
+    - action: utter_iamabot
+
+- rule: smalltalk creator
+  steps:
+    - intent: smalltalk_creator
+    - action: utter_creator
+
+- rule: capabilities
+  steps:
+    - intent: smalltalk_capabilities
+    - action: utter_capabilities
+
+- rule: out of scope
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+- rule: fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_fallback

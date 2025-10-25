@@ -38,6 +38,8 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - absolutely
+    - sure
 
 - intent: deny
   examples: |
@@ -89,3 +91,78 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+    - are you real?
+    - what are you?
+
+- intent: smalltalk_thanks
+  examples: |
+    - thanks
+    - thank you
+    - thanks a lot
+    - many thanks
+    - appreciate it
+    - thanks so much
+    - thx
+    - thank you very much
+
+- intent: smalltalk_help
+  examples: |
+    - help
+    - can you help me?
+    - I need help
+    - I need some help
+    - what can you do?
+    - how can you help me?
+    - how do you work?
+    - show me how to use this
+
+- intent: smalltalk_how_are_you
+  examples: |
+    - how are you?
+    - how's it going?
+    - how are you doing?
+    - how do you feel?
+    - hope you are well
+    - how are things?
+    - how have you been?
+    - what's up?
+
+- intent: smalltalk_who_are_you
+  examples: |
+    - who are you?
+    - what are you?
+    - tell me about yourself
+    - who am I talking to?
+    - introduce yourself
+    - what is your name?
+
+- intent: smalltalk_creator
+  examples: |
+    - who built you?
+    - who made you?
+    - who created you?
+    - who developed you?
+    - who is your creator?
+    - who made this bot?
+
+- intent: smalltalk_capabilities
+  examples: |
+    - what can you do
+    - what are your capabilities
+    - what do you do
+    - how can you help
+    - what problems can you help with
+    - what can you help me with
+    - what are you good at
+    - what topics can you handle
+
+- intent: out_of_scope
+  examples: |
+    - tell me a joke about rockets
+    - sing me a song
+    - what's the weather in 1980?
+    - open my email
+    - draw me a picture
+    - turn off my lights
+    - hack my wifi
+    - buy me a pizza
