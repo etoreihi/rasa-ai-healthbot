@@ -7,83 +7,124 @@ nlu:
     - hello
     - hi
     - hello there
+    - hey there
     - good morning
+    - good afternoon
     - good evening
     - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - what's up
+    - sup
+    - yo
+    - hola
+    - hola!
+    - buenas
+    - buenas tardes
+    - buenos días
+    - qué tal
+    - hola, qué tal
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
     - bye
     - goodbye
-    - have a nice day
-    - see you around
     - bye bye
+    - see you
     - see you later
+    - see ya
+    - catch you later
+    - take care
+    - good night
+    - cu
+    - nos vemos
+    - chao
+    - adiós
+    - hasta luego
+    - hasta pronto
+    - me voy
 
 - intent: affirm
   examples: |
     - yes
     - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-    - absolutely
+    - yeah
+    - yup
     - sure
+    - of course
+    - absolutely
+    - correct
+    - sounds good
+    - ok
+    - okay
+    - dale
+    - sí
+    - claro
+    - por supuesto
+    - de acuerdo
 
 - intent: deny
   examples: |
     - no
     - n
-    - never
+    - nope
+    - nah
+    - not really
+    - no way
     - I don't think so
     - don't like that
-    - no way
-    - not really
+    - mejor no
+    - no gracias
+    - para nada
+    - negativo
 
 - intent: mood_great
   examples: |
     - perfect
     - great
     - amazing
-    - feeling like a king
     - wonderful
+    - feeling like a king
     - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
+    - I'm great
     - super stoked
     - extremely good
-    - so so perfect
     - so good
     - so perfect
+    - genial
+    - estoy súper bien
+    - me siento excelente
+    - hoy me va de maravilla
 
 - intent: mood_unhappy
   examples: |
     - my day was horrible
     - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
     - I'm so sad
-    - sad
-    - very sad
+    - I don't feel very well
+    - I'm disappointed
     - unhappy
     - not good
     - not very good
-    - extremly sad
-    - so saad
+    - very sad
+    - super sad
     - so sad
+    - tuve un mal día
+    - estoy triste
+    - me siento mal
+    - no estoy bien
+    - fatal hoy
+
+- intent: mood_neutral
+  examples: |
+    - I'm okay
+    - so so
+    - neither good nor bad
+    - could be better
+    - meh
+    - normal
+    - más o menos
+    - ahí vamos
+    - todo normal
+    - ni bien ni mal
 
 - intent: bot_challenge
   examples: |
@@ -91,8 +132,11 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-    - are you real?
     - what are you?
+    - are you real?
+    - eres un bot?
+    - eres humano?
+    - quién eres realmente?
 
 - intent: smalltalk_thanks
   examples: |
@@ -101,9 +145,18 @@ nlu:
     - thanks a lot
     - many thanks
     - appreciate it
-    - thanks so much
     - thx
+    - gracias
+    - mil gracias
+    - te lo agradezco
+
+- intent: thankyou
+  examples: |
+    - thanks so much
     - thank you very much
+    - much appreciated
+    - muchas gracias
+    - se agradece
 
 - intent: smalltalk_help
   examples: |
@@ -111,10 +164,20 @@ nlu:
     - can you help me?
     - I need help
     - I need some help
-    - what can you do?
     - how can you help me?
-    - how do you work?
     - show me how to use this
+    - ayuda
+    - me ayudas
+    - necesito ayuda
+    - cómo me puedes ayudar
+
+- intent: help
+  examples: |
+    - I need assistance
+    - give me a hand
+    - please help
+    - échame una mano
+    - ayúdame por favor
 
 - intent: smalltalk_how_are_you
   examples: |
@@ -123,9 +186,10 @@ nlu:
     - how are you doing?
     - how do you feel?
     - hope you are well
-    - how are things?
-    - how have you been?
     - what's up?
+    - cómo estás
+    - qué tal vas
+    - cómo te va
 
 - intent: smalltalk_who_are_you
   examples: |
@@ -135,6 +199,8 @@ nlu:
     - who am I talking to?
     - introduce yourself
     - what is your name?
+    - quién eres
+    - cómo te llamas
 
 - intent: smalltalk_creator
   examples: |
@@ -143,7 +209,8 @@ nlu:
     - who created you?
     - who developed you?
     - who is your creator?
-    - who made this bot?
+    - quién te creó
+    - quién te hizo
 
 - intent: smalltalk_capabilities
   examples: |
@@ -152,17 +219,82 @@ nlu:
     - what do you do
     - how can you help
     - what problems can you help with
-    - what can you help me with
     - what are you good at
-    - what topics can you handle
+    - qué puedes hacer
+    - en qué me puedes ayudar
+
+- intent: ask_capabilities
+  examples: |
+    - list your skills
+    - show your features
+    - dime tus capacidades
+    - qué sabes hacer exactamente
+
+- intent: chitchat
+  examples: |
+    - tell me something interesting
+    - let's chat
+    - talk to me
+    - hablemos
+    - cuéntame algo
+    - tengo curiosidad
+
+- intent: faq_hours
+  examples: |
+    - what are your hours
+    - when are you open
+    - horarios?
+    - a qué hora atienden
+
+- intent: faq_location
+  examples: |
+    - where are you located
+    - address please
+    - ubicación?
+    - dónde están
+
+- intent: faq_contact
+  examples: |
+    - how can I contact you
+    - contact info
+    - teléfono?
+    - email?
+    - cómo los contacto
 
 - intent: out_of_scope
   examples: |
     - tell me a joke about rockets
     - sing me a song
-    - what's the weather in 1980?
     - open my email
     - draw me a picture
-    - turn off my lights
     - hack my wifi
     - buy me a pizza
+    - arréglame el carro
+    - consígueme un doctor ahora mismo
+    - paga mi factura
+
+- lookup: bye_words
+  examples: |
+    - bye
+    - goodbye
+    - see you
+    - nos vemos
+    - chao
+    - adiós
+
+- lookup: yes_words
+  examples: |
+    - yes
+    - yeah
+    - yup
+    - ok
+    - okay
+    - claro
+    - sí
+
+- lookup: no_words
+  examples: |
+    - no
+    - nope
+    - nah
+    - para nada

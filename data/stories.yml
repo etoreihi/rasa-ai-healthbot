@@ -1,7 +1,6 @@
 version: "3.1"
 
 stories:
-
 - story: happy path
   steps:
   - intent: greet
@@ -26,5 +25,130 @@ stories:
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: happy path with goodbye
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: user says goodbye directly
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: greet → neutral mood
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_neutral
+  - action: utter_neutral
+
+- story: greet → ask capabilities
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_capabilities
+  - action: utter_capabilities
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- story: small talk then goodbye
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: chitchat
+  - action: utter_chitchat
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: user thanks after help
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: thankyou
+  - action: utter_youre_welcome
+
+- story: cheer up fails then offer help
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_sorry
+  - action: utter_help
+
+- story: deny then change mind to affirm
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_sorry
+  - intent: affirm
+  - action: utter_happy
+
+- story: out of scope then rephrase
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: utter_ask_rephrase
+  - intent: greet
+  - action: utter_greet
+
+- story: fallback then recover to greet
+  steps:
+  - intent: nlu_fallback
+  - action: utter_fallback
+  - action: utter_ask_rephrase
+  - intent: greet
+  - action: utter_greet
+
+- story: user changes from great to unhappy
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+  - intent: mood_unhappy
+  - action: utter_empathize
+  - action: utter_help
+
+- story: greet then goodbye without small talk
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: greet then ask for help then affirm
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: help
+  - action: utter_help
+  - intent: affirm
+  - action: utter_continue
+
+- story: greet then deny help and leave
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: help
+  - action: utter_help
   - intent: deny
   - action: utter_goodbye

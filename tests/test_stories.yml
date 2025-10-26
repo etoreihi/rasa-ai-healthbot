@@ -1,6 +1,8 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
 
+version: "3.1"
+
 stories:
 - story: happy path 1
   steps:
@@ -89,3 +91,69 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: greet and ask mood
+  steps:
+  - user: |
+      hey!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      how are you?
+    intent: mood_question
+  - action: utter_bot_mood
+
+- story: user neutral mood
+  steps:
+  - user: |
+      hi there
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I'm okay
+    intent: mood_neutral
+  - action: utter_neutral
+
+- story: user gets curious
+  steps:
+  - user: |
+      hello!
+    intent: greet
+  - action: utter_greet
+  - user: |
+      what can you do?
+    intent: ask_capabilities
+  - action: utter_capabilities
+
+- story: positive then confused
+  steps:
+  - user: |
+      hey there
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I'm great today!
+    intent: mood_great
+  - action: utter_happy
+  - user: |
+      wait, what did you mean by that?
+    intent: ask_clarification
+  - action: utter_clarify
+
+- story: cheer up fails
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I'm really sad
+    intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - user: |
+      still no
+    intent: deny
+  - action: utter_sorry
+  - action: utter_goodbye
+

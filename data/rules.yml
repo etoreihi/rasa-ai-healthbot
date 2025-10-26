@@ -16,14 +16,35 @@ rules:
     - intent: greet
     - action: utter_greet
 
-- rule: thanks
+- rule: out of scope
+  steps:
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+
+- rule: fallback
+  steps:
+    - intent: nlu_fallback
+    - action: utter_fallback
+    - action: utter_ask_rephrase
+
+- rule: thanks (smalltalk)
   steps:
     - intent: smalltalk_thanks
     - action: utter_thanks
 
-- rule: help
+- rule: thanks (generic)
+  steps:
+    - intent: thankyou
+    - action: utter_thanks
+
+- rule: help (smalltalk)
   steps:
     - intent: smalltalk_help
+    - action: utter_help
+
+- rule: help (generic)
+  steps:
+    - intent: help
     - action: utter_help
 
 - rule: smalltalk how are you
@@ -41,17 +62,57 @@ rules:
     - intent: smalltalk_creator
     - action: utter_creator
 
-- rule: capabilities
+- rule: capabilities (smalltalk)
   steps:
     - intent: smalltalk_capabilities
     - action: utter_capabilities
 
-- rule: out of scope
+- rule: capabilities (generic)
   steps:
-    - intent: out_of_scope
-    - action: utter_out_of_scope
+    - intent: ask_capabilities
+    - action: utter_capabilities
 
-- rule: fallback
+- rule: general chitchat
   steps:
-    - intent: nlu_fallback
-    - action: utter_fallback
+    - intent: chitchat
+    - action: utter_chitchat
+
+- rule: user is feeling great
+  steps:
+    - intent: mood_great
+    - action: utter_happy
+
+- rule: user is neutral
+  steps:
+    - intent: mood_neutral
+    - action: utter_neutral
+
+- rule: user affirms
+  steps:
+    - intent: affirm
+    - action: utter_continue
+
+- rule: user denies
+  steps:
+    - intent: deny
+    - action: utter_sorry
+
+- rule: welcome on session start
+  steps:
+    - action: action_session_start
+    - action: utter_greet
+
+- rule: hours info
+  steps:
+    - intent: faq_hours
+    - action: utter_faq_hours
+
+- rule: location info
+  steps:
+    - intent: faq_location
+    - action: utter_faq_location
+
+- rule: contact info
+  steps:
+    - intent: faq_contact
+    - action: utter_faq_contact
