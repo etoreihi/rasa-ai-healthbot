@@ -3,89 +3,52 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
     - hi
-    - hello there
+    - hello
+    - hey
+    - hi there
     - good morning
     - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
 
-- intent: goodbye
+- intent: inform
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - I'm a registered nurse on a surgical unit
+    - I’ve been here three years
+    - A medication error almost reached the patient
+    - the team reacted poorly
+    - I realized it when I double-checked the chart
+    - it’s been weighing on me
+    - I feel scared it could happen again
 
-- intent: affirm
+- intent: express_intrusion_symptoms
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - I keep thinking about it
+    - it pops into my head
+    - sometimes I feel like I’m back there
+    - I have dreams about it
+    - reminders bring it all back
+    - images about it come up
 
-- intent: deny
+- intent: express_avoidance_symptoms
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - I try not to think about it
+    - I avoid talking about it
+    - I stay away from places that remind me
+    - I push the thoughts away
+    - I feel kind of numb about it
 
-- intent: mood_great
+- intent: express_hyperarousal_symptoms
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - I feel on edge
+    - I startle easily
+    - it’s hard to sleep
+    - my concentration is worse
+    - my heart races when I’m reminded
+    - I feel on guard a lot
 
-- intent: mood_unhappy
+- intent: finish_assessment
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - I'm done
+    - can we stop
+    - that’s enough for now
+    - finish

@@ -2,32 +2,55 @@ version: "3.1"
 
 intents:
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - inform                      # free-text during context phase
+  - express_intrusion_symptoms
+  - express_avoidance_symptoms
+  - express_hyperarousal_symptoms
+  - finish_assessment
 
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+entities:
+  - subscale
+  - severity
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+slots:
+  current_phase:
+    type: text
+    mappings: [{type: custom}]
+  context_index:
+    type: float
+    mappings: [{type: custom}]
+  question_index:
+    type: float
+    mappings: [{type: custom}]
+  current_subscale:
+    type: text
+    mappings: [{type: custom}]
+  last_prompt_key:
+    type: text
+    initial_value: ""
+    influence_conversation: false
+    mappings: [{type: custom}]
+  intrusion_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
+  avoidance_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
+  hyper_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+actions:
+  - action_start_assessment
+  - action_handle_user_and_next
+  - action_finalize_summary
 
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
 
 session_config:
   session_expiration_time: 60

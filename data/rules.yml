@@ -2,12 +2,23 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+# ---------------------------------
+# START THE ASSESSMENT
+# ---------------------------------
+- rule: start on greet
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+    - intent: greet
+    - action: action_start_assessment
 
-- rule: Say 'I am a bot' anytime the user challenges
+# ---------------------------------
+# ROUTE ANY OTHER USER REPLY
+# ---------------------------------
+- rule: route any user reply to handler
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+    - or:
+        - intent: inform
+        - intent: express_intrusion_symptoms
+        - intent: express_avoidance_symptoms
+        - intent: express_hyperarousal_symptoms
+    - action: action_handle_user_and_next
+
