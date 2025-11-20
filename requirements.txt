@@ -1,9 +1,16 @@
 rasa==3.6.21
 rasa-sdk==3.6.2
+
 openai==1.54.1
 python-dotenv==1.0.1
-uvicorn==0.29.0
 requests==2.31.0
-python-engineio<4
-python-socketio<6
 
+# Needed for Rasa HTTP API
+aiohttp==3.8.6
+
+# Needed for Rasa compatibility (engineio/socketio)
+python-engineio>=4,<6
+python-socketio>=5,<6
+
+# For running custom servers if needed
+uvicorn==0.29.0
