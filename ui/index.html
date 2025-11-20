@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Healthbot</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>AI Healthbot</h2>
+
+    <div id="chatbox" style="border:1px solid #ccc; padding:10px; width:400px; height:300px; overflow-y:auto"></div>
+
+    <input id="userInput" type="text" placeholder="Type a message..." style="width:300px;">
+    <button onclick="send()">Send</button>
+
+    <script>
+        function appendMessage(sender, text) {
+            const box = document.getElementById("chatbox");
+            box.innerHTML += "<p><strong>" + sender + ":</strong> " + text + "</p>";
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function send() {
+            const message = document.getElementById("userInput").value;
+            appendMessage("You", message);
+
+            fetch("/send_message", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message})
+            })
+            .then(res => res.json())
+            .then(data => {
+                data.responses.forEach(r => appendMessage("Bot", r));
+            });
+
+            document.getElementById("userInput").value = "";
+        }
+    </script>
+
+</body>
+</html>

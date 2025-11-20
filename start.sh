@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Start Rasa API
-rasa run --enable-api --cors "*" &
+# Start Rasa Server (API enabled)
+rasa run --enable-api --cors "*" --port 5005 &
 
 # Start Action Server
-rasa run actions &
+rasa run actions --port 5055 &
 
-# Start UI
-streamlit run ui/app.py --server.port $PORT --server.address 0.0.0.0
+# Start Flask UI
+python ui/server.py
