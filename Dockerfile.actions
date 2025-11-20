@@ -7,7 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-COPY actions/ requirements.txt /app/actions/
+COPY actions/ /app/actions/
+COPY actions/requirements.txt /app/actions/requirements.txt
+
 
 # Install ONLY the custom deps
 RUN pip install --no-cache-dir -r actions/requirements.txt
