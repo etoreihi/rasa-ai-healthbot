@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: rasa-bot
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.rasa
+    autoDeploy: true
+    envVars:
+      - key: RASA_ENV
+        value: production
+
+  - type: web
+    name: rasa-actions
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.actions
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false   # you’ll set this in UI
+
+  - type: web
+    name: rasa-ui
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.ui
+    autoDeploy: true
+    envVars:
+      - key: RASA_API_URL
+        # After first deploy, set this to the public URL of rasa-bot,
+        # e.g. https://rasa-bot.onrender.com/webhooks/rest/webhook
+        value: "https://rasa-bot.onrender.com/webhooks/rest/webhook"

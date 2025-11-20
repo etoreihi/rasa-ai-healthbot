@@ -1,0 +1,26 @@
+rasa==3.6.21
+rasa-sdk==3.6.2
+
+# LLM + environment
+openai
+python-dotenv
+
+# Web server for actions
+sanic==23.6.0
+
+# For async requests (Rasa sometimes needs it)
+aiohttp
+
+# If you use any ML utilities (safe to include)
+scikit-learn
+numpy
+pandas
+
+# For text processing
+regex
+
+# If using your Streamlit web demo (if applicable)
+streamlit
+
+# Prevent SQLAlchemy 2.0 crash that Rasa warns about
+SQLAlchemy<2.0
