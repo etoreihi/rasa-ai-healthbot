@@ -8,8 +8,7 @@ __pycache__/
 *.pyd
 venv/
 
-# Rasa
-models/
+# Rasaß
 logs/
 *.db
 *.sqlite3
@@ -20,5 +19,14 @@ logs/
 __pycache__/
 *.pyc
 .rasa/
-.env
-models/   
+**/__pycache__/
+rasa/
+*.db
+*.sqlite
+.cache/
+tmp/
+logs/
+*.pyc
+models/*.old.tar.gz
+models/*.tmp
+

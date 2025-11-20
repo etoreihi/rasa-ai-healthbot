@@ -1,18 +1,21 @@
-# Dockerfile.actions
-FROM rasa/rasa-sdk:3.6.2
+FROM python:3.10-slim
 
 WORKDIR /app
 
-# Copy actions
-COPY actions ./actions
+# Install OS deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Python deps for actions (openai etc.)
+COPY actions/ requirements.txt /app/actions/
+
+# Install ONLY the custom deps
 RUN pip install --no-cache-dir -r actions/requirements.txt
+
+COPY actions /app/actions
+
+ENV PYTHONPATH=/app
 
 EXPOSE 5055
 
-# Start action server
-CMD ["start", \
-     "--actions", "actions.actions", \
-     "--port", "5055", \
-     "--cors", "*"]
+CMD ["rasa", "run", "actions", "--port", "5055"]

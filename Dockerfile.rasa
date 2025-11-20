@@ -1,17 +1,13 @@
-# Dockerfile.rasa
 FROM rasa/rasa:3.6.21-full
 
 WORKDIR /app
 
-# Copy core Rasa project files
 COPY config.yml domain.yml credentials.yml endpoints.yml ./
 COPY data ./data
 COPY models ./models
-
-# (Optional) train inside the image if you don’t want to copy models
-# RUN rasa train
+# If adding extra dependencies:
+# RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5005
 
-# Start Rasa server with API enabled
-CMD ["run", "--enable-api", "--cors", "*", "--port", "5005"]
+CMD ["run", "--enable-api", "--cors", "*"]
