@@ -1,7 +1,13 @@
 rasa==3.6.21
 rasa-sdk==3.6.2
-
 openai==1.54.1
 python-dotenv==1.0.1
 requests==2.31.0
 uvicorn==0.29.0
+
+# Needed for Rasa channel internals
+python-engineio>=4,<6
+python-socketio>=4,<6
+
+# Rasa requirement
+aiohttp>=3.9.0,<3.10
