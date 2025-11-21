@@ -35,7 +35,10 @@ from openai import OpenAI
 
 # ========= OpenAI (LLM) =========
 # Make sure OPENAI_API_KEY is set in your environment.
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    http_client=None     # <-- Prevents proxy auto-loading
+)
 
 # ========= CONTEXT QUESTIONS (from your doc) =========
 # Order matters: we’ll ask all 6 first, conversationally.
