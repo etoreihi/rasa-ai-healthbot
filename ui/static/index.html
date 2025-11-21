@@ -18,12 +18,16 @@ async function sendMessage() {
     const chat = document.getElementById("chat");
     const msg = document.getElementById("msg").value;
     chat.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+    
+    // --- START OF FIX ---
+    const RASA_URL = "https://web-production-cde1.up.railway.app/webhooks/rest/webhook";
 
-    const response = await fetch("/send", {
+    const response = await fetch(RASA_URL, { 
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({message: msg})
+        body: JSON.stringify({sender: "user_id", message: msg}) // NOTE: Added "sender" key
     });
+    // --- END OF FIX ---
 
     const data = await response.json();
     data.forEach(r => {
@@ -33,5 +37,3 @@ async function sendMessage() {
     document.getElementById("msg").value = "";
 }
 </script>
-</body>
-</html>
