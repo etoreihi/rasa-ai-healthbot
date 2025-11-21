@@ -6,7 +6,10 @@ import os
 app = Flask(__name__, static_folder="static")
 CORS(app)
 
-RASA_URL = "http://localhost:5005/webhooks/rest/webhook"
+RASA_URL = os.environ.get("RASA_URL", "http://0.0.0.0:5005/webhooks/rest/webhook")
+
+
+
 
 @app.route("/")
 def index():
