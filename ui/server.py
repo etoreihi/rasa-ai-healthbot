@@ -1,27 +1,34 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 import requests
-import os
+from flask_cors import CORS
 
-app = Flask(__name__, static_folder=".", static_url_path="")
+app = Flask(__name__)
+CORS(app)
 
-RASA_URL = "http://web-production-cde1.up.railway.app"
+RASA_URL = "http://localhost:5005/webhooks/rest/webhook"
 
-@app.route("/")
-def index():
-    return send_from_directory("ui", "index.html")
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_message = request.json.get("message")
+    if not user_message:
+        return jsonify({"error": "No message provided"}), 400
 
-@app.route("/send_message", methods=["POST"])
-def send_message():
-    user_message = request.json.get("message", "")
+    response = requests.post(
+        RASA_URL,
+        json={"sender": "user", "message": user_message}
+    )
 
-    res = requests.post(RASA_URL, json={"sender": "user", "message": user_message})
-    bot_response = res.json()
+    if response.status_code != 200:
+        return jsonify({"error": "Rasa error"}), 500
 
-    # Rasa responds as a list — return text only
-    texts = [m.get("text", "") for m in bot_response]
+    rasa_reply = response.json()
+    text = rasa_reply[0].get("text", "") if rasa_reply else ""
 
-    return jsonify({"responses": texts})
+    return jsonify({"reply": text})
+
+@app.route("/", methods=["GET"])
+def home():
+    return "Flask API is running."
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=8000)

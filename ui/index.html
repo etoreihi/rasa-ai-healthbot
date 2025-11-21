@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>AI Healthbot</title>
-    <meta charset="UTF-8">
-</head>
 <body>
-    <h2>AI Healthbot</h2>
-
-    <div id="chatbox" style="border:1px solid #ccc; padding:10px; width:400px; height:300px; overflow-y:auto"></div>
-
-    <input id="userInput" type="text" placeholder="Type a message..." style="width:300px;">
+    <h2>Chatbot Test</h2>
+    <input id="msg" placeholder="Type something">
     <button onclick="send()">Send</button>
 
-    <script>
-        function appendMessage(sender, text) {
-            const box = document.getElementById("chatbox");
-            box.innerHTML += "<p><strong>" + sender + ":</strong> " + text + "</p>";
-            box.scrollTop = box.scrollHeight;
-        }
+    <div id="chat"></div>
 
-        function send() {
-            const message = document.getElementById("userInput").value;
-            appendMessage("You", message);
+<script>
+async function send() {
+    let msg = document.getElementById("msg").value;
 
-            fetch("/send_message", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({message})
-            })
-            .then(res => res.json())
-            .then(data => {
-                data.responses.forEach(r => appendMessage("Bot", r));
-            });
+    let res = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+    });
 
-            document.getElementById("userInput").value = "";
-        }
-    </script>
+    let data = await res.json();
+
+    document.getElementById("chat").innerHTML +=
+        "<p><b>You:</b> " + msg + "</p>" +
+        "<p><b>Bot:</b> " + data.reply + "</p>";
+}
+</script>
 
 </body>
 </html>
