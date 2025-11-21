@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+  <style>
+      body { font-family: Arial; padding:20px; }
+      #chat { border:1px solid #ccc; padding:10px; height:400px; overflow-y:scroll;}
+  </style>
+</head>
+<body>
+  <h2>Chatbot</h2>
+  <div id="chat"></div>
+  <input id="msg" placeholder="Type here..." style="width:80%">
+  <button onclick="sendMessage()">Send</button>
+
+<script>
+async function sendMessage() {
+    const chat = document.getElementById("chat");
+    const msg = document.getElementById("msg").value;
+    chat.innerHTML += `<p><b>You:</b> ${msg}</p>`;
+
+    const response = await fetch("/send", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({message: msg})
+    });
+
+    const data = await response.json();
+    data.forEach(r => {
+        chat.innerHTML += `<p><b>Bot:</b> ${r.text}</p>`;
+    });
+
+    document.getElementById("msg").value = "";
+}
+</script>
+</body>
+</html>

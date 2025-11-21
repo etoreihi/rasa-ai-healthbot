@@ -9,12 +9,12 @@ CORS(app)
 RASA_URL = "http://localhost:5005/webhooks/rest/webhook"
 
 @app.route("/")
-def serve_index():
+def index():
     return send_from_directory("static", "index.html")
 
-@app.route("/api/message", methods=["POST"])
-def message():
-    user_msg = request.json.get("message")
+@app.route("/chat", methods=["POST"])
+def chat():
+    user_msg = request.json.get("message", "")
     response = requests.post(RASA_URL, json={"sender": "user", "message": user_msg})
     return jsonify(response.json())
 
