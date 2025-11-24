@@ -1,33 +1,4 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
-
-
-# This is a simple example for a custom action which utters "Hello World!"
-
-# from typing import Any, Text, Dict, List
-#
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
-
 import os
-import httpx # Import the new HTTP client library
 from typing import Any, Text, Dict, List, Optional, Tuple
 from random import choice
 from rasa_sdk import Action, Tracker
@@ -35,27 +6,10 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 from openai import OpenAI
 
-# -----------------
-# Define the proxy URL here, if needed.
-# Since you're on Railway, you might be pulling this from environment variables.
-# Example: proxy_url = os.environ.get("HTTP_PROXY") 
-# If you don't need a proxy, just set it to None:
-proxy_url = None # <-- RECOMMENDED TO TRY THIS FIRST IF YOU DON'T HAVE A PROXY
+# ========= OpenAI (LLM) =========
+# Make sure OPENAI_API_KEY is set in your environment.
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# -----------------
-# Initialize the client:
-if proxy_url:
-    # If a proxy is set, create a custom httpx client and pass it in
-    custom_http_client = httpx.Client(proxies=proxy_url)
-    client = OpenAI(
-        api_key=os.environ.get("OPENAI_API_KEY"),
-        http_client=custom_http_client # Use the new parameter
-    )
-else:
-    # If no proxy is set, initialize normally
-    client = OpenAI(
-        api_key=os.environ.get("OPENAI_API_KEY")
-    )
 # ========= CONTEXT QUESTIONS (from your doc) =========
 # Order matters: we’ll ask all 6 first, conversationally.
 CONTEXT_QUESTIONS = [
