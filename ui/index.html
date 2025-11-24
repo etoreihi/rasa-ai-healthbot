@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Healthbot</title>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+  }
+  #chat {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      height: 70vh;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .msg {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      max-width: 80%;
+  }
+  .user {
+      background: #d1e7ff;
+      align-self: flex-end;
+  }
+  .bot {
+      background: #e6e6e6;
+  }
+  #inputBox {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      gap: 10px;
+  }
+  input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+  }
+  button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<h2 style="text-align:center;">AI Healthbot</h2>
+
+<div id="chat"></div>
+
+<div id="inputBox">
+  <input id="userInput" type="text" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chat = document.getElementById("chat");
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // Show user message
+    chat.innerHTML += `<div class="msg user">${message}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+    input.value = "";
+
+    // Send to Rasa server
+    const response = await fetch("http://localhost:5005/webhooks/rest/webhook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sender: "tester", message: message })
+    });
+
+    const data = await response.json();
+
+    data.forEach(msg => {
+        chat.innerHTML += `<div class="msg bot">${msg.text}</div>`;
+    });
+
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
