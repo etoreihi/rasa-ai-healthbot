@@ -1,0 +1,57 @@
+version: "3.1"
+
+intents:
+  - greet
+  - inform                      # free-text during context phase
+  - express_intrusion_symptoms
+  - express_avoidance_symptoms
+  - express_hyperarousal_symptoms
+  - finish_assessment
+
+entities:
+  - subscale
+  - severity
+
+slots:
+  current_phase:
+    type: text
+    mappings: [{type: custom}]
+  context_index:
+    type: float
+    mappings: [{type: custom}]
+  question_index:
+    type: float
+    mappings: [{type: custom}]
+  current_subscale:
+    type: text
+    mappings: [{type: custom}]
+  last_prompt_key:
+    type: text
+    initial_value: ""
+    influence_conversation: false
+    mappings: [{type: custom}]
+  intrusion_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
+  avoidance_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
+  hyper_sum:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings: [{type: custom}]
+
+actions:
+  - action_start_assessment
+  - action_handle_user_and_next
+  - action_finalize_summary
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
