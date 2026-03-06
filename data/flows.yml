@@ -1,0 +1,108 @@
+flows:
+  default:
+    description: Guide the user through a mental health assessment with structured phases.
+    steps:
+      # Phase 1: Greeting
+      - set_slots:
+          - phase: greeting
+      - action: utter_greeting
+      # Phase 2: Language Selection
+      - set_slots:
+          - phase: language_selection
+      - collect: user_language
+      - action: action_set_language
+      # Phase 3: Intro
+      - set_slots:
+          - phase: intro
+      - action: action_start_assessment
+      # Phase 4: Context (brief initial question for rapport)
+      - set_slots:
+          - phase: context
+      - set_slots:
+          - current_question: context_1
+      - action: action_ask_question  # This would need a context question in i18n
+      - collect: context_1_text
+      - action: action_parse_score  # Or just acknowledge
+      # Phase 5: Assessment
+      - set_slots:
+          - phase: assessment
+      # Intrusion questions
+      - set_slots:
+          - current_question: intrusion_1
+      - action: action_ask_question
+      - collect: intrusion_1_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_2
+      - action: action_ask_question
+      - collect: intrusion_2_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_3
+      - action: action_ask_question
+      - collect: intrusion_3_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_4
+      - action: action_ask_question
+      - collect: intrusion_4_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_5
+      - action: action_ask_question
+      - collect: intrusion_5_text
+      - action: action_parse_score
+      # Avoidance questions
+      - set_slots:
+          - current_question: avoidance_1
+      - action: action_ask_question
+      - collect: avoidance_1_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: avoidance_2
+      - action: action_ask_question
+      - collect: avoidance_2_text
+      - action: action_parse_score
+      # Hyperarousal questions
+      - set_slots:
+          - current_question: hyperarousal_1
+      - action: action_ask_question
+      - collect: hyperarousal_1_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_2
+      - action: action_ask_question
+      - collect: hyperarousal_2_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_3
+      - action: action_ask_question
+      - collect: hyperarousal_3_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_4
+      - action: action_ask_question
+      - collect: hyperarousal_4_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_5
+      - action: action_ask_question
+      - collect: hyperarousal_5_text
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_6
+      - action: action_ask_question
+      - collect: hyperarousal_6_text
+      - action: action_parse_score
+      # Phase 6: Scoring
+      - set_slots:
+          - phase: scoring
+      - action: action_calculate_scores
+      # Phase 7: Summary
+      - set_slots:
+          - phase: summary
+      - action: action_generate_summary
+      # Phase 8: Closing
+      - set_slots:
+          - phase: closing
+      - action: action_closing
