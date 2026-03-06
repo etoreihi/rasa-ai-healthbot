@@ -1,4 +1,0 @@
-rasa==3.6.21
-rasa-sdk==3.6.2
-openai>=1.0.0
-python-dotenv
