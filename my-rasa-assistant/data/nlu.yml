@@ -1,0 +1,64 @@
+version: "3.1"
+
+nlu:
+- intent: affirm
+  examples: |
+    - yes
+    - yep
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - si
+    - claro
+    - por supuesto
+
+- intent: deny
+  examples: |
+    - no
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - no
+    - nunca
+    - no creo
+
+- intent: inform
+  examples: |
+    - my name is [John](name)
+    - I am [Sarah](name)
+    - I live in [Berlin](location)
+    - I am from [Paris](location)
+    - 2
+    - moderately
+    - quite a bit
+    - not at all
+    - 3
+    - un poco
+    - bastante
+    - nada
+
+- intent: dont_know
+  examples: |
+    - I don't know
+    - not sure
+    - unsure
+    - no idea
+    - I'm not sure
+    - no sé
+    - no estoy seguro
+    - no tengo idea
+
+- intent: chitchat
+  examples: |
+    - how are you
+    - what is your name
+    - what can you do
+    - tell me a joke
+    - how is the weather
+    - what time is it
+    - cómo estás
+    - cuál es tu nombre
+    - qué puedes hacer
