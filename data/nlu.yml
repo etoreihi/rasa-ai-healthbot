@@ -1,0 +1,54 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+    - hi there
+    - good morning
+    - good evening
+
+- intent: inform
+  examples: |
+    - I'm a registered nurse on a surgical unit
+    - I’ve been here three years
+    - A medication error almost reached the patient
+    - the team reacted poorly
+    - I realized it when I double-checked the chart
+    - it’s been weighing on me
+    - I feel scared it could happen again
+
+- intent: express_intrusion_symptoms
+  examples: |
+    - I keep thinking about it
+    - it pops into my head
+    - sometimes I feel like I’m back there
+    - I have dreams about it
+    - reminders bring it all back
+    - images about it come up
+
+- intent: express_avoidance_symptoms
+  examples: |
+    - I try not to think about it
+    - I avoid talking about it
+    - I stay away from places that remind me
+    - I push the thoughts away
+    - I feel kind of numb about it
+
+- intent: express_hyperarousal_symptoms
+  examples: |
+    - I feel on edge
+    - I startle easily
+    - it’s hard to sleep
+    - my concentration is worse
+    - my heart races when I’m reminded
+    - I feel on guard a lot
+
+- intent: finish_assessment
+  examples: |
+    - I'm done
+    - can we stop
+    - that’s enough for now
+    - finish
