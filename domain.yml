@@ -1,57 +1,493 @@
 version: "3.1"
 
 intents:
-  - greet
-  - inform                      # free-text during context phase
-  - express_intrusion_symptoms
-  - express_avoidance_symptoms
-  - express_hyperarousal_symptoms
-  - finish_assessment
-
-entities:
-  - subscale
-  - severity
+  - affirm
+  - deny
+  - inform
+  - dont_know
+  - chitchat
 
 slots:
+  user_language:
+    type: text
+    mappings:
+      - type: from_text
+  rephrase_count:
+    type: float
+    initial_value: 0
+    mappings:
+      - type: controlled
+  current_question:
+    type: text
+    mappings:
+      - type: controlled
   current_phase:
+    type: categorical
+    values:
+      - greeting
+      - language
+      - intro
+      - context
+      - assessment
+      - scoring
+      - summary
+      - closing
+    mappings:
+      - type: controlled
+  # Text slots for user input
+  context_1_text:
     type: text
-    mappings: [{type: custom}]
-  context_index:
-    type: float
-    mappings: [{type: custom}]
-  question_index:
-    type: float
-    mappings: [{type: custom}]
-  current_subscale:
+    mappings:
+      - type: from_text
+  context_2_text:
     type: text
-    mappings: [{type: custom}]
-  last_prompt_key:
+    mappings:
+      - type: from_text
+  context_3_text:
     type: text
-    initial_value: ""
-    influence_conversation: false
-    mappings: [{type: custom}]
-  intrusion_sum:
+    mappings:
+      - type: from_text
+  context_4_text:
+    type: text
+    mappings:
+      - type: from_text
+  user_role:
+    type: text
+    mappings:
+      - type: controlled
+  user_experience_years:
+    type: text
+    mappings:
+      - type: controlled
+  user_setting:
+    type: text
+    mappings:
+      - type: controlled
+  # Text slots for user input
+  intrusion_1_text:
+    type: text
+    mappings:
+      - type: from_text
+  intrusion_2_text:
+    type: text
+    mappings:
+      - type: from_text
+  intrusion_3_text:
+    type: text
+    mappings:
+      - type: from_text
+  intrusion_4_text:
+    type: text
+    mappings:
+      - type: from_text
+  intrusion_5_text:
+    type: text
+    mappings:
+      - type: from_text
+  avoidance_1_text:
+    type: text
+    mappings:
+      - type: from_text
+  avoidance_2_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_1_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_2_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_3_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_4_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_5_text:
+    type: text
+    mappings:
+      - type: from_text
+  hyperarousal_6_text:
+    type: text
+    mappings:
+      - type: from_text
+  # Numeric scores
+  intrusion_1:
     type: float
-    initial_value: 0.0
-    influence_conversation: false
-    mappings: [{type: custom}]
-  avoidance_sum:
+    mappings:
+      - type: controlled
+  intrusion_2:
     type: float
-    initial_value: 0.0
-    influence_conversation: false
-    mappings: [{type: custom}]
-  hyper_sum:
+    mappings:
+      - type: controlled
+  intrusion_3:
     type: float
-    initial_value: 0.0
-    influence_conversation: false
-    mappings: [{type: custom}]
+    mappings:
+      - type: controlled
+  intrusion_4:
+    type: float
+    mappings:
+      - type: controlled
+  intrusion_5:
+    type: float
+    mappings:
+      - type: controlled
+  avoidance_1:
+    type: float
+    mappings:
+      - type: controlled
+  avoidance_2:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_1:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_2:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_3:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_4:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_5:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_6:
+    type: float
+    mappings:
+      - type: controlled
+  # Calculated scores
+  intrusion_score:
+    type: float
+    mappings:
+      - type: controlled
+  avoidance_score:
+    type: float
+    mappings:
+      - type: controlled
+  hyperarousal_score:
+    type: float
+    mappings:
+      - type: controlled
+  top_domains:
+    type: list
+    mappings:
+      - type: controlled
+  top_items:
+    type: list
+    mappings:
+      - type: controlled
+  end_choice:
+    type: text
+    mappings:
+      - type: from_text
+  last_summary_text:
+    type: text
+    mappings:
+      - type: controlled
+
+responses:
+  utter_greeting:
+    - text: "Hi, how are you today? / Hola, ¿cómo estás hoy?"
+
+  utter_closing:
+    - text: "If you're experiencing distress, please reach out to a qualified healthcare provider. Take care."
+
+  utter_ask_language:
+    - text: ""
+
+  utter_start_assessment_en:
+    - text: "Thanks for sharing. I’ll ask a few questions so I can better understand what this has been like for you."
+
+  utter_start_assessment_es:
+    - text: "Gracias por compartir. Te haré algunas preguntas para entender mejor cómo ha sido esto para ti."
+
+  # Intrusion questions - English
+  utter_ask_intrusion_1_v1_en:
+    - text: "In the past month, how much have you been bothered by repeated, disturbing memories, thoughts, or images of a stressful experience from the past?"
+
+  utter_ask_intrusion_1_v2_en:
+    - text: "How often have you experienced unwanted memories or thoughts about a past stressful event?"
+
+  utter_ask_intrusion_1_v3_en:
+    - text: "Have you had recurring thoughts or images of a traumatic event that bother you?"
+
+  utter_ask_intrusion_2_v1_en:
+    - text: "In the past month, how much have you been bothered by repeated, disturbing dreams of a stressful experience from the past?"
+
+  utter_ask_intrusion_2_v2_en:
+    - text: "How often do you have disturbing dreams related to a past stressful event?"
+
+  utter_ask_intrusion_2_v3_en:
+    - text: "Do you experience recurring nightmares about a traumatic experience?"
+
+  utter_ask_intrusion_3_v1_en:
+    - text: "In the past month, how much have you suddenly acted or felt as if a stressful experience were happening again (as if you were reliving it)?"
+
+  utter_ask_intrusion_3_v2_en:
+    - text: "How often do you feel like you're reliving a past traumatic event?"
+
+  utter_ask_intrusion_3_v3_en:
+    - text: "Do you have flashbacks or moments where it feels like the trauma is happening again?"
+
+  utter_ask_intrusion_4_v1_en:
+    - text: "In the past month, how much have you felt very upset when something reminded you of a stressful experience from the past?"
+
+  utter_ask_intrusion_4_v2_en:
+    - text: "How often do reminders of a past stressful event make you very upset?"
+
+  utter_ask_intrusion_4_v3_en:
+    - text: "Do triggers related to a traumatic experience cause strong emotional reactions?"
+
+  utter_ask_intrusion_5_v1_en:
+    - text: "In the past month, how much have you had physical reactions (e.g., heart pounding, trouble breathing, or sweating) when something reminded you of a stressful experience from the past?"
+
+  utter_ask_intrusion_5_v2_en:
+    - text: "How often do you experience physical symptoms when reminded of a past trauma?"
+
+  utter_ask_intrusion_5_v3_en:
+    - text: "Do you have bodily reactions like rapid heartbeat or sweating in response to trauma reminders?"
+
+  # Avoidance questions - English
+  utter_ask_avoidance_1_v1_en:
+    - text: "In the past month, how much have you been avoiding thinking about or talking about a stressful experience from the past or avoiding having feelings related to it?"
+
+  utter_ask_avoidance_1_v2_en:
+    - text: "How often do you avoid thoughts or discussions about a past traumatic event?"
+
+  utter_ask_avoidance_1_v3_en:
+    - text: "Do you try to avoid memories or emotions connected to a stressful experience?"
+
+  utter_ask_avoidance_2_v1_en:
+    - text: "In the past month, how much have you been avoiding activities or situations because they reminded you of a stressful experience from the past?"
+
+  utter_ask_avoidance_2_v2_en:
+    - text: "How often do you stay away from places or activities that remind you of trauma?"
+
+  utter_ask_avoidance_2_v3_en:
+    - text: "Do you avoid situations that trigger memories of a past stressful event?"
+
+  # Hyperarousal questions - English
+  utter_ask_hyperarousal_1_v1_en:
+    - text: "In the past month, how much have you been 'super alert,' watchful, or on guard?"
+
+  utter_ask_hyperarousal_1_v2_en:
+    - text: "How often do you feel overly alert or watchful?"
+
+  utter_ask_hyperarousal_1_v3_en:
+    - text: "Do you feel constantly on guard or hypervigilant?"
+
+  utter_ask_hyperarousal_2_v1_en:
+    - text: "In the past month, how much have you felt jumpy or easily startled?"
+
+  utter_ask_hyperarousal_2_v2_en:
+    - text: "How often do you feel jumpy or get startled easily?"
+
+  utter_ask_hyperarousal_2_v3_en:
+    - text: "Are you easily startled or feel jumpy?"
+
+  utter_ask_hyperarousal_3_v1_en:
+    - text: "In the past month, how much difficulty have you had concentrating?"
+
+  utter_ask_hyperarousal_3_v2_en:
+    - text: "How often do you struggle with concentration?"
+
+  utter_ask_hyperarousal_3_v3_en:
+    - text: "Do you have trouble focusing or concentrating?"
+
+  utter_ask_hyperarousal_4_v1_en:
+    - text: "In the past month, how much difficulty have you had falling asleep or staying asleep?"
+
+  utter_ask_hyperarousal_4_v2_en:
+    - text: "How often do you have trouble sleeping?"
+
+  utter_ask_hyperarousal_4_v3_en:
+    - text: "Do you experience insomnia or difficulty staying asleep?"
+
+  utter_ask_hyperarousal_5_v1_en:
+    - text: "In the past month, how much have you felt irritable or had angry outbursts?"
+
+  utter_ask_hyperarousal_5_v2_en:
+    - text: "How often do you feel irritable or have anger outbursts?"
+
+  utter_ask_hyperarousal_5_v3_en:
+    - text: "Do you experience irritability or sudden anger?"
+
+  utter_ask_hyperarousal_6_v1_en:
+    - text: "In the past month, how much have you been taking too many risks or doing things that could cause you harm?"
+
+  utter_ask_hyperarousal_6_v2_en:
+    - text: "How often do you engage in risky behaviors?"
+
+  utter_ask_hyperarousal_6_v3_en:
+    - text: "Do you take unnecessary risks that could harm you?"
+
+  # Spanish versions (translations)
+  utter_ask_intrusion_1_v1_es:
+    - text: "En el último mes, ¿cuánto le han molestado los recuerdos repetidos, pensamientos o imágenes perturbadores de una experiencia estresante del pasado?"
+
+  utter_ask_intrusion_1_v2_es:
+    - text: "¿Con qué frecuencia ha experimentado recuerdos o pensamientos no deseados sobre un evento estresante pasado?"
+
+  utter_ask_intrusion_1_v3_es:
+    - text: "¿Ha tenido pensamientos o imágenes recurrentes de un evento traumático que le molesten?"
+
+  utter_ask_intrusion_2_v1_es:
+    - text: "En el último mes, ¿cuánto le han molestado los sueños repetidos y perturbadores de una experiencia estresante del pasado?"
+
+  utter_ask_intrusion_2_v2_es:
+    - text: "¿Con qué frecuencia tiene sueños perturbadores relacionados con un evento estresante pasado?"
+
+  utter_ask_intrusion_2_v3_es:
+    - text: "¿Experimenta pesadillas recurrentes sobre una experiencia traumática?"
+
+  utter_ask_intrusion_3_v1_es:
+    - text: "En el último mes, ¿cuánto ha actuado o sentido de repente como si una experiencia estresante estuviera sucediendo de nuevo (como si la estuviera reviviendo)?"
+
+  utter_ask_intrusion_3_v2_es:
+    - text: "¿Con qué frecuencia siente que está reviviendo un evento traumático pasado?"
+
+  utter_ask_intrusion_3_v3_es:
+    - text: "¿Tiene flashbacks o momentos en los que siente que el trauma está sucediendo de nuevo?"
+
+  utter_ask_intrusion_4_v1_es:
+    - text: "En el último mes, ¿cuánto se ha sentido muy molesto cuando algo le recordó una experiencia estresante del pasado?"
+
+  utter_ask_intrusion_4_v2_es:
+    - text: "¿Con qué frecuencia los recordatorios de un evento estresante pasado le hacen sentir muy molesto?"
+
+  utter_ask_intrusion_4_v3_es:
+    - text: "¿Los desencadenantes relacionados con una experiencia traumática causan fuertes reacciones emocionales?"
+
+  utter_ask_intrusion_5_v1_es:
+    - text: "En el último mes, ¿cuánto ha tenido reacciones físicas (por ejemplo, corazón acelerado, dificultad para respirar o sudoración) cuando algo le recordó una experiencia estresante del pasado?"
+
+  utter_ask_intrusion_5_v2_es:
+    - text: "¿Con qué frecuencia experimenta síntomas físicos cuando se le recuerda un trauma pasado?"
+
+  utter_ask_intrusion_5_v3_es:
+    - text: "¿Tiene reacciones corporales como latidos rápidos del corazón o sudoración en respuesta a recordatorios de trauma?"
+
+  utter_ask_avoidance_1_v1_es:
+    - text: "En el último mes, ¿cuánto ha estado evitando pensar o hablar sobre una experiencia estresante del pasado o evitando tener sentimientos relacionados con ella?"
+
+  utter_ask_avoidance_1_v2_es:
+    - text: "¿Con qué frecuencia evita pensamientos o discusiones sobre un evento traumático pasado?"
+
+  utter_ask_avoidance_1_v3_es:
+    - text: "¿Intenta evitar recuerdos o emociones conectadas a una experiencia estresante?"
+
+  utter_ask_avoidance_2_v1_es:
+    - text: "En el último mes, ¿cuánto ha estado evitando actividades o situaciones porque le recordaban una experiencia estresante del pasado?"
+
+  utter_ask_avoidance_2_v2_es:
+    - text: "¿Con qué frecuencia se mantiene alejado de lugares o actividades que le recuerdan el trauma?"
+
+  utter_ask_avoidance_2_v3_es:
+    - text: "¿Evita situaciones que desencadenan recuerdos de un evento estresante pasado?"
+
+  utter_ask_hyperarousal_1_v1_es:
+    - text: "En el último mes, ¿cuánto ha estado 'super alerta', vigilante o en guardia?"
+
+  utter_ask_hyperarousal_1_v2_es:
+    - text: "¿Con qué frecuencia se siente excesivamente alerta o vigilante?"
+
+  utter_ask_hyperarousal_1_v3_es:
+    - text: "¿Se siente constantemente en guardia o hipervigilante?"
+
+  utter_ask_hyperarousal_2_v1_es:
+    - text: "En el último mes, ¿cuánto se ha sentido nervioso o fácilmente sobresaltado?"
+
+  utter_ask_hyperarousal_2_v2_es:
+    - text: "¿Con qué frecuencia se siente nervioso o se sobresalta fácilmente?"
+
+  utter_ask_hyperarousal_2_v3_es:
+    - text: "¿Se sobresalta fácilmente o se siente nervioso?"
+
+  utter_ask_hyperarousal_3_v1_es:
+    - text: "En el último mes, ¿cuánta dificultad ha tenido para concentrarse?"
+
+  utter_ask_hyperarousal_3_v2_es:
+    - text: "¿Con qué frecuencia lucha con la concentración?"
+
+  utter_ask_hyperarousal_3_v3_es:
+    - text: "¿Tiene problemas para enfocarse o concentrarse?"
+
+  utter_ask_hyperarousal_4_v1_es:
+    - text: "En el último mes, ¿cuánta dificultad ha tenido para conciliar el sueño o mantenerse dormido?"
+
+  utter_ask_hyperarousal_4_v2_es:
+    - text: "¿Con qué frecuencia tiene problemas para dormir?"
+
+  utter_ask_hyperarousal_4_v3_es:
+    - text: "¿Experimenta insomnio o dificultad para mantenerse dormido?"
+
+  utter_ask_hyperarousal_5_v1_es:
+    - text: "En el último mes, ¿cuánto se ha sentido irritable o ha tenido arrebatos de ira?"
+
+  utter_ask_hyperarousal_5_v2_es:
+    - text: "¿Con qué frecuencia se siente irritable o tiene arrebatos de ira?"
+
+  utter_ask_hyperarousal_5_v3_es:
+    - text: "¿Experimenta irritabilidad o ira repentina?"
+
+  utter_ask_hyperarousal_6_v1_es:
+    - text: "En el último mes, ¿cuánto ha estado tomando demasiados riesgos o haciendo cosas que podrían causarle daño?"
+
+  utter_ask_hyperarousal_6_v2_es:
+    - text: "¿Con qué frecuencia se involucra en comportamientos de riesgo?"
+
+  utter_ask_hyperarousal_6_v3_es:
+    - text: "¿Toma riesgos innecesarios que podrían dañarlo?"
+
+  utter_summary_en:
+    - text: "Thank you for completing the assessment. Based on your responses, your top two symptom domains are {top_domains}. Your scores are: Intrusion: {intrusion_score}, Avoidance: {avoidance_score}, Hyperarousal: {hyperarousal_score}. Remember, this is not a diagnosis. Please consult a mental health professional for proper evaluation."
+
+  utter_summary_es:
+    - text: "Gracias por completar la evaluación. Basado en sus respuestas, sus dos dominios de síntomas principales son {top_domains}. Sus puntuaciones son: Intrusión: {intrusion_score}, Evasión: {avoidance_score}, Hiperactivación: {hyperarousal_score}. Recuerde, esto no es un diagnóstico. Por favor, consulte a un profesional de la salud mental para una evaluación adecuada."
+
+  utter_free_chitchat_response:
+    - text: ""
+
+  utter_ask_continue_conversation:
+    - text: ""
+
+  utter_can_do_something_else:
+    - text: ""
 
 actions:
+  - action_ask_intrusion_1
+  - action_ask_intrusion_2
+  - action_ask_intrusion_3
+  - action_ask_intrusion_4
+  - action_ask_intrusion_5
+  - action_ask_avoidance_1
+  - action_ask_avoidance_2
+  - action_ask_hyperarousal_1
+  - action_ask_hyperarousal_2
+  - action_ask_hyperarousal_3
+  - action_ask_hyperarousal_4
+  - action_ask_hyperarousal_5
+  - action_ask_hyperarousal_6
+  - action_parse_score
+  - action_calculate_scores
+  - action_generate_summary
+  - action_set_language
   - action_start_assessment
-  - action_handle_user_and_next
-  - action_finalize_summary
-
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  - action_ask_question
+  - action_extract_background
+  - action_ask_end_options
+  - action_handle_end_choice
