@@ -1,54 +1,71 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: affirm
+  examples: |
+    - yes
+    - yep
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - si
+    - claro
+    - por supuesto
+
+- intent: deny
+  examples: |
+    - no
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - no
+    - nunca
+    - no creo
+
+- intent: inform
+  examples: |
+    - my name is [John](name)
+    - I am [Sarah](name)
+    - I live in [Berlin](location)
+    - I am from [Paris](location)
+    - 2
+    - moderately
+    - quite a bit
+    - not at all
+    - 3
+    - un poco
+    - bastante
+    - nada
+
+- intent: chitchat
   examples: |
     - hi
     - hello
     - hey
-    - hi there
     - good morning
+    - good afternoon
     - good evening
+    - how are you
+    - what's up
+    - hola
+    - buenos dias
+    - buenas tardes
+    - buenas noches
+    - como estas
+    - no estoy seguro
+    - no tengo idea
 
-- intent: inform
+- intent: chitchat
   examples: |
-    - I'm a registered nurse on a surgical unit
-    - I’ve been here three years
-    - A medication error almost reached the patient
-    - the team reacted poorly
-    - I realized it when I double-checked the chart
-    - it’s been weighing on me
-    - I feel scared it could happen again
-
-- intent: express_intrusion_symptoms
-  examples: |
-    - I keep thinking about it
-    - it pops into my head
-    - sometimes I feel like I’m back there
-    - I have dreams about it
-    - reminders bring it all back
-    - images about it come up
-
-- intent: express_avoidance_symptoms
-  examples: |
-    - I try not to think about it
-    - I avoid talking about it
-    - I stay away from places that remind me
-    - I push the thoughts away
-    - I feel kind of numb about it
-
-- intent: express_hyperarousal_symptoms
-  examples: |
-    - I feel on edge
-    - I startle easily
-    - it’s hard to sleep
-    - my concentration is worse
-    - my heart races when I’m reminded
-    - I feel on guard a lot
-
-- intent: finish_assessment
-  examples: |
-    - I'm done
-    - can we stop
-    - that’s enough for now
-    - finish
+    - how are you
+    - what is your name
+    - what can you do
+    - tell me a joke
+    - how is the weather
+    - what time is it
+    - cómo estás
+    - cuál es tu nombre
+    - qué puedes hacer

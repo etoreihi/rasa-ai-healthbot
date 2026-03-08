@@ -1,0 +1,52 @@
+questions:
+  context_1:
+    domain: context
+    max_rephrases: 3
+  context_2:
+    domain: context
+    max_rephrases: 3
+  context_3:
+    domain: context
+    max_rephrases: 3
+  context_4:
+    domain: context
+    max_rephrases: 3
+  intrusion_1:
+    domain: intrusion
+    max_rephrases: 3
+  intrusion_2:
+    domain: intrusion
+    max_rephrases: 3
+  intrusion_3:
+    domain: intrusion
+    max_rephrases: 3
+  intrusion_4:
+    domain: intrusion
+    max_rephrases: 3
+  intrusion_5:
+    domain: intrusion
+    max_rephrases: 3
+  avoidance_1:
+    domain: avoidance
+    max_rephrases: 3
+  avoidance_2:
+    domain: avoidance
+    max_rephrases: 3
+  hyperarousal_1:
+    domain: hyperarousal
+    max_rephrases: 3
+  hyperarousal_2:
+    domain: hyperarousal
+    max_rephrases: 3
+  hyperarousal_3:
+    domain: hyperarousal
+    max_rephrases: 3
+  hyperarousal_4:
+    domain: hyperarousal
+    max_rephrases: 3
+  hyperarousal_5:
+    domain: hyperarousal
+    max_rephrases: 3
+  hyperarousal_6:
+    domain: hyperarousal
+    max_rephrases: 3

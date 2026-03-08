@@ -1,0 +1,88 @@
+questions:
+  context_1:
+    variants:
+      - "How have you been feeling overall lately?"
+      - "How would you describe your mood these days?"
+      - "What has your emotional energy been like recently?"
+  context_2:
+    variants:
+      - "What kind of role do you have in healthcare right now?"
+      - "What do you do in your healthcare work?"
+      - "How would you describe your current role in healthcare?"
+  context_3:
+    variants:
+      - "How long have you been working in this field?"
+      - "Roughly how many years have you been in healthcare?"
+      - "How much experience do you have in your role?"
+  context_4:
+    variants:
+      - "What setting are you working in these days, and what has been the toughest part lately?"
+      - "What kind of work environment are you in, and what has felt most challenging recently?"
+      - "In your day-to-day work, what situation has been hardest on you lately?"
+  intrusion_1:
+    variants:
+      - "In the past month, have you noticed repeated memories, thoughts, or images from difficult experiences?"
+      - "Have unwanted memories or thoughts from past stressful moments been showing up for you?"
+      - "Have recurring thoughts or images from hard experiences been bothering you lately?"
+  intrusion_2:
+    variants:
+      - "Have you been having upsetting dreams connected to difficult past experiences?"
+      - "Do stressful dreams come up for you at night?"
+      - "Have recurring nightmares or disturbing dreams been part of what you're experiencing?"
+  intrusion_3:
+    variants:
+      - "Have there been moments where a past difficult experience suddenly feels very present again?"
+      - "At times, does it feel like your mind is pulled back into a past stressful moment?"
+      - "Do you ever have flashback-like moments where things feel vivid again?"
+  intrusion_4:
+    variants:
+      - "In the past month, how much have you felt very upset when something reminded you of a stressful experience from the past?"
+      - "How often do reminders of a past stressful event make you very upset?"
+      - "Do triggers related to a traumatic experience cause strong emotional reactions?"
+  intrusion_5:
+    variants:
+      - "In the past month, how much have you had physical reactions (e.g., heart pounding, trouble breathing, or sweating) when something reminded you of a stressful experience from the past?"
+      - "How often do you experience physical symptoms when reminded of a past trauma?"
+      - "Do you have bodily reactions like rapid heartbeat or sweating in response to trauma reminders?"
+  avoidance_1:
+    variants:
+      - "In the past month, how much have you been avoiding thinking about or talking about a stressful experience from the past or avoiding having feelings related to it?"
+      - "How often do you avoid thoughts or discussions about a past traumatic event?"
+      - "Do you try to avoid memories or emotions connected to a stressful experience?"
+  avoidance_2:
+    variants:
+      - "In the past month, how much have you been avoiding activities or situations because they reminded you of a stressful experience from the past?"
+      - "How often do you stay away from places or activities that remind you of trauma?"
+      - "Do you avoid situations that trigger memories of a past stressful event?"
+  hyperarousal_1:
+    variants:
+      - "In the past month, how much have you been 'super alert,' watchful, or on guard?"
+      - "How often do you feel overly alert or watchful?"
+      - "Do you feel constantly on guard or hypervigilant?"
+  hyperarousal_2:
+    variants:
+      - "In the past month, how much have you felt jumpy or easily startled?"
+      - "How often do you feel jumpy or get startled easily?"
+      - "Are you easily startled or feel jumpy?"
+  hyperarousal_3:
+    variants:
+      - "In the past month, how much difficulty have you had concentrating?"
+      - "How often do you struggle with concentration?"
+      - "Do you have trouble focusing or concentrating?"
+  hyperarousal_4:
+    variants:
+      - "In the past month, how much difficulty have you had falling asleep or staying asleep?"
+      - "How often do you have trouble sleeping?"
+      - "Do you experience insomnia or difficulty staying asleep?"
+  hyperarousal_5:
+    variants:
+      - "In the past month, how much have you felt irritable or had angry outbursts?"
+      - "How often do you feel irritable or have anger outbursts?"
+      - "Do you experience irritability or sudden anger?"
+  hyperarousal_6:
+    variants:
+      - "In the past month, how much have you been taking too many risks or doing things that could cause you harm?"
+      - "How often do you engage in risky behaviors?"
+      - "Do you take unnecessary risks that could harm you?"
+summaries:
+  final: "Thank you for completing the assessment. Based on your responses, your top two symptom domains are {top_domains}. Your scores are: Intrusion: {intrusion_score}, Avoidance: {avoidance_score}, Hyperarousal: {hyperarousal_score}. Remember, this is not a diagnosis. Please consult a mental health professional for proper evaluation."

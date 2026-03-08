@@ -1,0 +1,178 @@
+flows:
+  mental_health_assessment:
+    description: High-level conversation flow for bilingual mental health assessment using Rasa CALM.
+    nlu_trigger:
+      - intent: chitchat
+      - intent: inform
+      - intent: affirm
+      - intent: deny
+      - intent: dont_know
+    steps:
+      # Phase 1: Greeting
+      - set_slots:
+          - current_phase: greeting
+      - action: utter_greeting
+
+      # Phase 2: Language Detection/Selection
+      - set_slots:
+          - current_phase: language
+      - action: action_set_language
+
+      # Phase 3: Brief Intro
+      - set_slots:
+          - current_phase: intro
+      - action: action_start_assessment
+
+      # Phase 4: Context Phase (Initial questions for context)
+      - set_slots:
+          - current_phase: context
+      # Example: Ask 2-3 context questions (e.g., general well-being)
+      - set_slots:
+          - current_question: context_1
+      - action: action_ask_question  # Custom action to handle context questions
+      - collect: context_1_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_extract_background
+      - action: action_parse_score  # Or simple collect if not scored
+      - set_slots:
+          - current_question: context_2
+      - action: action_ask_question
+      - collect: context_2_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_extract_background
+      - action: action_parse_score
+      - set_slots:
+          - current_question: context_3
+      - action: action_ask_question
+      - collect: context_3_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_extract_background
+      - action: action_parse_score
+      - set_slots:
+          - current_question: context_4
+      - action: action_ask_question
+      - collect: context_4_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_extract_background
+      - action: action_parse_score
+
+      # Phase 5: Assessment Phase (Intrusion, Avoidance, Hyperarousal)
+      - set_slots:
+          - current_phase: assessment
+      # Intrusion subdomain
+      - set_slots:
+          - current_question: intrusion_1
+      - action: action_ask_question
+      - collect: intrusion_1_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_2
+      - action: action_ask_question
+      - collect: intrusion_2_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_3
+      - action: action_ask_question
+      - collect: intrusion_3_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_4
+      - action: action_ask_question
+      - collect: intrusion_4_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: intrusion_5
+      - action: action_ask_question
+      - collect: intrusion_5_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      # Avoidance subdomain
+      - set_slots:
+          - current_question: avoidance_1
+      - action: action_ask_question
+      - collect: avoidance_1_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: avoidance_2
+      - action: action_ask_question
+      - collect: avoidance_2_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      # Hyperarousal subdomain
+      - set_slots:
+          - current_question: hyperarousal_1
+      - action: action_ask_question
+      - collect: hyperarousal_1_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_2
+      - action: action_ask_question
+      - collect: hyperarousal_2_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_3
+      - action: action_ask_question
+      - collect: hyperarousal_3_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_4
+      - action: action_ask_question
+      - collect: hyperarousal_4_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_5
+      - action: action_ask_question
+      - collect: hyperarousal_5_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+      - set_slots:
+          - current_question: hyperarousal_6
+      - action: action_ask_question
+      - collect: hyperarousal_6_text
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_parse_score
+
+      # Phase 6: Scoring Phase
+      - set_slots:
+          - current_phase: scoring
+      - action: action_calculate_scores
+
+      # Phase 7: Final Summary Phase
+      - set_slots:
+          - current_phase: summary
+      - action: action_generate_summary
+
+      # Phase 8: End Options
+      - set_slots:
+          - current_phase: closing
+      - action: action_ask_end_options
+      - collect: end_choice
+        ask_before_filling: true
+        utter: utter_free_chitchat_response
+      - action: action_handle_end_choice
